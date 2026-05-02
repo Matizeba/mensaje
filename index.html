@@ -3,42 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti</title>
+    <title>Para mi chica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fff5f5;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             text-align: center;
+            max-width: 350px;
+            animation: fadeIn 2s ease-in-out;
         }
-        .container {
-            max-width: 90%;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        h1 { color: #d63384; font-size: 1.8rem; }
-        p { color: #555; line-height: 1.6; font-size: 1.1rem; }
-        .highlight { font-weight: bold; color: #d63384; }
-        .heart { font-size: 50px; color: #e74c3c; margin: 20px 0; }
-        footer { margin-top: 20px; font-size: 0.9rem; color: #888; }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d81b60;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .heart-btn {
+            background: #d81b60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 20px;
+        }
+        .heart-btn:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="heart">❤️</div>
-        <h1>Perdón, me equivoqué</h1>
-        <p>Quería escribirte esto porque sé que <span class="highlight">no fue la manera correcta de hablarte</span>.</p>
-        <p>Me duele haberte herido y lamento mucho mis palabras. Mi intención nunca fue lastimarte, pero entiendo que lo hice y por eso estoy aquí, reconociendo mi error.</p>
-        <p>Eres muy importante para mí y espero que podamos hablar cuando estés lista.</p>
-        <div class="heart">✨</div>
-        <footer>Hecho con cariño para ti</footer>
+    <div class="card">
+        <h1>Lo siento...</h1>
+        <p>No encontré las palabras adecuadas en ese momento, pero encontré el código para decirte que me importas.</p>
+        <p><b>Perdón por cómo te hablé.</b></p>
+        <button class="heart-btn" onclick="alert('Te quiero mucho ❤️')">Presiona aquí</button>
     </div>
 </body>
 </html>
