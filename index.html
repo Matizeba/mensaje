@@ -3,160 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi persona favorita</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Para mi única estrella</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-sobre: #ff4d6d;
-            --color-carta: #ffffff;
-            --color-texto: #590d22;
+            --pink-dark: #ff0a54;
+            --pink-light: #ff85a1;
+            --glass: rgba(255, 255, 255, 0.2);
         }
 
-        body {
+        body, html {
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0a0a0a;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Fondo Animado con Gradiente Radial */
+        .canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #2b0011 0%, #000000 100%);
+            z-index: -1;
+        }
+
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(-45deg, #ffb3c1, #ff85a1, #f8ad9d, #fbc4ab);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
+            perspective: 1000px;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Estructura del Sobre */
-        .envelope-wrapper {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.5s;
-        }
-
-        .envelope-wrapper:hover {
-            transform: translateY(-10px);
-        }
-
-        .envelope {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            background: var(--color-sobre);
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-
-        .envelope::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            z-index: 2;
-            border-top: 100px solid #ff758f;
-            border-right: 150px solid transparent;
-            border-left: 150px solid transparent;
-            transform-origin: top;
-            transition: transform 0.4s 0.4s;
-        }
-
-        .letter {
-            position: absolute;
-            bottom: 0;
-            left: 10px;
-            width: 280px;
-            height: 180px;
-            background: var(--color-carta);
-            border-radius: 5px;
-            z-index: 1;
-            transition: transform 0.5s;
-            padding: 20px;
-            box-sizing: border-box;
+        /* Tarjeta con Efecto Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 30px;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            color: white;
+            max-width: 400px;
+            width: 85%;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            animation: cardEntrance 1.5s ease-out;
         }
 
-        .letter h2 {
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateZ(-200px) rotateX(20deg); }
+            to { opacity: 1; transform: translateZ(0) rotateX(0); }
+        }
+
+        h1 {
             font-family: 'Dancing Script', cursive;
-            margin: 0;
-            color: var(--color-sobre);
-            font-size: 1.8rem;
+            font-size: 3rem;
+            background: linear-gradient(to right, #ff0a54, #ff85a1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
 
-        .letter p {
-            font-size: 0.8rem;
-            color: var(--color-texto);
-            line-height: 1.4;
+        .typewriter {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            min-height: 100px;
         }
 
-        /* Animación de apertura */
-        .envelope-wrapper.open .envelope::before {
-            transform: rotateX(180deg);
-            z-index: 0;
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--pink-dark);
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
         }
 
-        .envelope-wrapper.open .letter {
-            transform: translateY(-130px);
-            z-index: 2;
-            height: auto;
-            min-height: 250px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        @keyframes blink {
+            50% { opacity: 0; }
         }
 
-        /* Corazón decorativo */
-        .heart-seal {
+        /* Botón de Neón */
+        .btn-neon {
+            margin-top: 30px;
+            padding: 15px 35px;
+            border: none;
+            background: var(--pink-dark);
+            color: white;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            box-shadow: 0 0 20px rgba(255, 10, 84, 0.4);
+        }
+
+        .btn-neon:hover {
+            box-shadow: 0 0 40px rgba(255, 10, 84, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Partículas de Corazón */
+        .particle {
             position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-            font-size: 40px;
-            transition: opacity 0.3s;
-        }
-
-        .envelope-wrapper.open .heart-seal {
-            opacity: 0;
             pointer-events: none;
+            animation: fall linear forwards;
         }
 
-        #timer {
-            font-weight: bold;
-            color: var(--color-sobre);
-            margin-top: 10px;
-            font-size: 0.7rem;
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="envelope-wrapper" onclick="this.classList.toggle('open')">
-        <div class="heart-seal">❤️</div>
-        <div class="envelope"></div>
-        <div class="letter">
-            <h2>Perdón, hermosa</h2>
-            <p>No supe hablarte bien y me duele haberte herido. Eres mi mundo y solo quiero verte feliz.</p>
-            <p><b>¿Me perdonas?</b></p>
-            <div id="timer">Cargando tiempo juntos...</div>
+    <div class="canvas-bg"></div>
+
+    <div class="container">
+        <div class="glass-card">
+            <h1>Para Ti</h1>
+            <div class="typewriter" id="text"></div>
+            <span class="cursor"></span>
+            <br>
+            <button class="btn-neon" onclick="createHeartShower()">Tócame ❤️</button>
         </div>
     </div>
 
     <script>
-        // Lógica del contador (Ajusta la fecha a cuando se conocieron)
-        function updateTimer() {
-            const startDate = new Date("2025-01-01"); // <--- CAMBIA ESTA FECHA
-            const now = new Date();
-            const diff = now - startDate;
+        const message = "Sé que me equivoqué en la forma de hablarte. No quiero excusas, solo quiero pedirte perdón de corazón. Eres lo más especial que tengo y me duele haberte herido. ¿Podemos volver a empezar?";
+        let i = 0;
+        const speed = 70; // Velocidad de escritura
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('timer').innerText = `Llevamos ${days} días compartiendo momentos.`;
+        function typeWriter() {
+            if (i < message.length) {
+                document.getElementById("text").innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
         }
-        setInterval(updateTimer, 1000);
-        updateTimer();
+
+        function createHeartShower() {
+            for(let j=0; j<30; j++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'particle';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '-5vh';
+                    heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+                    heart.style.duration = Math.random() * 3 + 2 + 's';
+                    heart.style.opacity = Math.random();
+                    heart.style.animation = `fall ${heart.style.duration} linear forwards`;
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 5000);
+                }, j * 100);
+            }
+        }
+
+        // Iniciar escritura al cargar
+        window.onload = typeWriter;
     </script>
 </body>
 </html>
