@@ -3,60 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi chica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <title>Para mi niña</title>
+    <!-- Fuente elegante de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff758f;
+            --bg: #fff0f3;
+        }
+
         body {
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            height: 100vh;
             overflow: hidden;
+            color: #444;
         }
+
+        /* Corazones flotantes de fondo */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.2);
+            font-size: 20px;
+            z-index: -1;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
         .card {
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.2);
             text-align: center;
-            max-width: 350px;
-            animation: fadeIn 2s ease-in-out;
+            max-width: 380px;
+            width: 90%;
+            position: relative;
+            transform: scale(0);
+            animation: popIn 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes popIn {
+            to { transform: scale(1); }
         }
+
         h1 {
             font-family: 'Dancing Script', cursive;
-            color: #d81b60;
-            font-size: 2.5rem;
+            color: var(--primary);
+            font-size: 2.8rem;
+            margin: 0 0 15px 0;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .heart-main {
+            font-size: 60px;
+            color: var(--primary);
+            animation: pulse 1.5s infinite;
+            display: inline-block;
             margin-bottom: 10px;
         }
-        .heart-btn {
-            background: #d81b60;
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .btn {
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s;
-            margin-top: 20px;
+            transition: 0.3s;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
         }
-        .heart-btn:hover {
-            transform: scale(1.1);
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
         }
     </style>
 </head>
 <body>
+
+    <!-- Generador de corazones de fondo con JS simple -->
+    <script>
+        for (let i = 0; i < 15; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'bg-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.delay = Math.random() * 5 + 's';
+            document.body.appendChild(heart);
+        }
+    </script>
+
     <div class="card">
-        <h1>Lo siento...</h1>
-        <p>No encontré las palabras adecuadas en ese momento, pero encontré el código para decirte que me importas.</p>
-        <p><b>Perdón por cómo te hablé..</b></p>
-        <button class="heart-btn" onclick="alert('Te quiero mucho ❤️')">Presiona aquí</button>
+        <div class="heart-main">❤️</div>
+        <h1>Lo siento, amor</h1>
+        <p>No fue la forma correcta de hablarte. <br>
+           <span class="highlight">Me equivoqué y te herí.</span>
+        </p>
+        <p>Perdón por mis palabras. Eres lo más importante y quiero que estemos bien.</p>
+        <button class="btn" onclick="alert('Prometo escucharte mejor ❤️')">Acepto mi error</button>
     </div>
+
 </body>
 </html>
