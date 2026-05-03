@@ -3,137 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi niña</title>
-    <!-- Fuente elegante de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <title>Para mi persona favorita</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ff4d6d;
-            --secondary: #ff758f;
-            --bg: #fff0f3;
+            --color-sobre: #ff4d6d;
+            --color-carta: #ffffff;
+            --color-texto: #590d22;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            background: var(--bg);
-            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background: linear-gradient(-45deg, #ffb3c1, #ff85a1, #f8ad9d, #fbc4ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Poppins', sans-serif;
             overflow: hidden;
-            color: #444;
         }
 
-        /* Corazones flotantes de fondo */
-        .bg-heart {
-            position: absolute;
-            color: rgba(255, 77, 109, 0.2);
-            font-size: 20px;
-            z-index: -1;
-            animation: float 6s linear infinite;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.2);
-            text-align: center;
-            max-width: 380px;
-            width: 90%;
+        /* Estructura del Sobre */
+        .envelope-wrapper {
             position: relative;
-            transform: scale(0);
-            animation: popIn 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
-        }
-
-        @keyframes popIn {
-            to { transform: scale(1); }
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            color: var(--primary);
-            font-size: 2.8rem;
-            margin: 0 0 15px 0;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .highlight {
-            color: var(--primary);
-            font-weight: 600;
-            display: block;
-            margin-top: 10px;
-        }
-
-        .heart-main {
-            font-size: 60px;
-            color: var(--primary);
-            animation: pulse 1.5s infinite;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: transform 0.5s;
         }
 
-        .btn:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
+        .envelope-wrapper:hover {
+            transform: translateY(-10px);
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: var(--color-sobre);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-top: 100px solid #ff758f;
+            border-right: 150px solid transparent;
+            border-left: 150px solid transparent;
+            transform-origin: top;
+            transition: transform 0.4s 0.4s;
+        }
+
+        .letter {
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+            width: 280px;
+            height: 180px;
+            background: var(--color-carta);
+            border-radius: 5px;
+            z-index: 1;
+            transition: transform 0.5s;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .letter h2 {
+            font-family: 'Dancing Script', cursive;
+            margin: 0;
+            color: var(--color-sobre);
+            font-size: 1.8rem;
+        }
+
+        .letter p {
+            font-size: 0.8rem;
+            color: var(--color-texto);
+            line-height: 1.4;
+        }
+
+        /* Animación de apertura */
+        .envelope-wrapper.open .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translateY(-130px);
+            z-index: 2;
+            height: auto;
+            min-height: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Corazón decorativo */
+        .heart-seal {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            font-size: 40px;
+            transition: opacity 0.3s;
+        }
+
+        .envelope-wrapper.open .heart-seal {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #timer {
+            font-weight: bold;
+            color: var(--color-sobre);
+            margin-top: 10px;
+            font-size: 0.7rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Generador de corazones de fondo con JS simple -->
-    <script>
-        for (let i = 0; i < 15; i++) {
-            let heart = document.createElement('div');
-            heart.className = 'bg-heart';
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            heart.style.delay = Math.random() * 5 + 's';
-            document.body.appendChild(heart);
-        }
-    </script>
-
-    <div class="card">
-        <div class="heart-main">❤️</div>
-        <h1>Lo siento, amor</h1>
-        <p>No fue la forma correcta de hablarte. <br>
-           <span class="highlight">Me equivoqué y te herí.</span>
-        </p>
-        <p>Perdón por mis palabras. Eres lo más importante y quiero que estemos bien.</p>
-        <button class="btn" onclick="alert('Prometo escucharte mejor ❤️')">Acepto mi error</button>
+    <div class="envelope-wrapper" onclick="this.classList.toggle('open')">
+        <div class="heart-seal">❤️</div>
+        <div class="envelope"></div>
+        <div class="letter">
+            <h2>Perdón, hermosa</h2>
+            <p>No supe hablarte bien y me duele haberte herido. Eres mi mundo y solo quiero verte feliz.</p>
+            <p><b>¿Me perdonas?</b></p>
+            <div id="timer">Cargando tiempo juntos...</div>
+        </div>
     </div>
 
+    <script>
+        // Lógica del contador (Ajusta la fecha a cuando se conocieron)
+        function updateTimer() {
+            const startDate = new Date("2025-01-01"); // <--- CAMBIA ESTA FECHA
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('timer').innerText = `Llevamos ${days} días compartiendo momentos.`;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
 </html>
